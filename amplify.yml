@@ -6,7 +6,7 @@ frontend:
         - npm ci
     build:
       commands:
-        - npm run generate
+        - npm run build
   artifacts:
     baseDirectory: .amplify-hosting/static
     files:
