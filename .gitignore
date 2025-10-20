@@ -22,3 +22,15 @@ logs
 .env
 .env.*
 !.env.example
+
+# Amplify
+amplify/backend/amplify-meta.json
+amplify/backend/.temp
+amplify/#current-cloud-backend
+amplify/.config
+amplify/mock-data
+amplify/mock-api-resources
+.amplify-hosting
+amplify-build-config.json
+amplifyconfiguration.json
+amplify_outputs.json

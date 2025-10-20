@@ -22,10 +22,32 @@
           <NuxtLink to="/about" class="nav-link" @click="mobileMenuOpen = false">
             About
           </NuxtLink>
-          <button class="cart-btn">
-            <span class="cart-icon">🛒</span>
-            <span class="cart-count">0</span>
-          </button>
+          
+          <template v-if="isAuthenticated">
+            <button class="cart-btn">
+              <span class="cart-icon">🛒</span>
+              <span class="cart-count">0</span>
+            </button>
+            <div class="user-dropdown">
+              <button class="user-btn" @click="userMenuOpen = !userMenuOpen">
+                <span class="user-icon">👤</span>
+              </button>
+              <div v-if="userMenuOpen" class="dropdown-menu">
+                <button @click="handleLogout" class="dropdown-item">
+                  Sign Out
+                </button>
+              </div>
+            </div>
+          </template>
+          
+          <template v-else>
+            <NuxtLink to="/login" class="btn-login" @click="mobileMenuOpen = false">
+              Login
+            </NuxtLink>
+            <NuxtLink to="/signup" class="btn-signup" @click="mobileMenuOpen = false">
+              Sign Up
+            </NuxtLink>
+          </template>
         </div>
       </div>
     </nav>
@@ -83,9 +105,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const mobileMenuOpen = ref(false)
+const userMenuOpen = ref(false)
+const { isAuthenticated, checkAuth, logout } = useAuth()
+
+onMounted(() => {
+  checkAuth()
+})
+
+const handleLogout = async () => {
+  userMenuOpen.value = false
+  mobileMenuOpen.value = false
+  await logout()
+}
 </script>
 
 <style>
@@ -237,6 +271,91 @@ body {
   border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 700;
+}
+
+.btn-login,
+.btn-signup {
+  text-decoration: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn-login {
+  color: #667eea;
+  border: 2px solid #667eea;
+}
+
+.btn-login:hover {
+  background: #667eea;
+  color: white;
+}
+
+.btn-signup {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-signup:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.user-dropdown {
+  position: relative;
+}
+
+.user-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem;
+  min-width: 150px;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  color: #333;
+  font-weight: 500;
+}
+
+.dropdown-item:hover {
+  background: #f5f5f5;
+  color: #667eea;
 }
 
 /* Main Content */
