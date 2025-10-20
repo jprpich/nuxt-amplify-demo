@@ -6,11 +6,9 @@ frontend:
         - npm ci
     build:
       commands:
-        # Nuxt 4 uses Nitro; generate static files
         - npm run generate
   artifacts:
-    # Nuxt 4 outputs static assets here
-    baseDirectory: .output/public
+    baseDirectory: .amplify-hosting/static
     files:
       - "**/*"
   cache:
