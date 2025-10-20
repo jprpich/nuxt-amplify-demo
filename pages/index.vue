@@ -20,10 +20,18 @@
         </div>
       </div>
       <div class="hero-visual">
-        <div class="floating-card card-1">🎧</div>
-        <div class="floating-card card-2">⌚</div>
-        <div class="floating-card card-3">🎒</div>
-        <div class="floating-card card-4">☕</div>
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop" alt="Headphones" />
+        </div>
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop" alt="Watch" />
+        </div>
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300&h=300&fit=crop" alt="Backpack" />
+        </div>
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300&h=300&fit=crop" alt="Coffee" />
+        </div>
       </div>
     </section>
 
@@ -212,58 +220,35 @@
 
 .hero-visual {
   flex: 1;
-  position: relative;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 500px;
 }
 
-.floating-card {
-  position: absolute;
-  width: 120px;
-  height: 120px;
+.product-card {
+  width: 100%;
+  aspect-ratio: 1;
   background: white;
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  animation: float 6s ease-in-out infinite;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card-1 {
-  top: 10%;
-  left: 10%;
-  animation-delay: 0s;
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
 }
 
-.card-2 {
-  top: 15%;
-  right: 15%;
-  animation-delay: 1.5s;
-}
-
-.card-3 {
-  bottom: 20%;
-  left: 5%;
-  animation-delay: 3s;
-}
-
-.card-4 {
-  bottom: 15%;
-  right: 10%;
-  animation-delay: 4.5s;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(5deg);
-  }
+.product-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
 }
 
 /* Features Section */
@@ -446,12 +431,22 @@
   .hero {
     flex-direction: column;
     min-height: auto;
-    padding: 3rem 1.5rem;
+    padding: 3rem 2rem;
+  }
+
+  .hero-content {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    justify-content: center;
   }
 
   .hero-visual {
-    height: 400px;
     width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
   }
 
   .hero-title {
@@ -460,6 +455,10 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding: 2rem 1.5rem;
+  }
+
   .hero-title {
     font-size: 2.5rem;
   }
@@ -473,13 +472,18 @@
   }
 
   .hero-visual {
-    height: 300px;
+    max-width: 350px;
+    gap: 1rem;
   }
 
-  .floating-card {
-    width: 80px;
-    height: 80px;
-    font-size: 2rem;
+  .features,
+  .categories,
+  .cta {
+    padding: 4rem 1.5rem;
+  }
+
+  .stats {
+    padding: 4rem 1.5rem;
   }
 
   .stats-grid {
@@ -492,7 +496,7 @@
   }
 
   .cta-content h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .cta-content p {
@@ -503,6 +507,11 @@
     padding: 0.9rem 2rem;
     font-size: 1rem;
   }
+
+  .btn-large {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -511,7 +520,19 @@
   }
 
   .hero-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-visual {
+    max-width: 300px;
+    gap: 0.75rem;
+    margin-top: 1rem;
   }
 
   .features,
@@ -521,8 +542,76 @@
     padding: 3rem 1rem;
   }
 
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .features-grid {
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.25rem;
+  }
+
+  .feature-card p {
+    font-size: 0.95rem;
+  }
+
   .categories-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .category-card {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .category-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+  }
+
+  .cta-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .cta-content p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .btn {
+    padding: 0.85rem 1.75rem;
+    font-size: 0.95rem;
+  }
+
+  .btn-large {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    text-align: center;
   }
 }
 </style>
