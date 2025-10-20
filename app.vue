@@ -23,7 +23,7 @@
             About
           </NuxtLink>
           <button class="cart-btn">
-            <span class="cart-icon">🛒</span>
+            <span class="cart-text">Cart</span>
             <span class="cart-count">0</span>
           </button>
         </div>
@@ -210,7 +210,7 @@ body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  padding: 0.7rem 1.5rem;
+  padding: 0.6rem 1.2rem;
   border-radius: 50px;
   cursor: pointer;
   font-weight: 600;
@@ -219,6 +219,7 @@ body {
   gap: 0.5rem;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  font-size: 0.95rem;
 }
 
 .cart-btn:hover {
@@ -226,17 +227,20 @@ body {
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
-.cart-icon {
-  font-size: 1.2rem;
+.cart-text {
+  font-size: 1rem;
+  letter-spacing: 0.3px;
 }
 
 .cart-count {
   background: white;
   color: #667eea;
-  padding: 0.2rem 0.6rem;
+  padding: 0.15rem 0.5rem;
   border-radius: 50px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
+  min-width: 20px;
+  text-align: center;
 }
 
 /* Main Content */
