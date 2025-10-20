@@ -96,6 +96,11 @@ const mobileMenuOpen = ref(false)
   box-sizing: border-box;
 }
 
+html {
+  color-scheme: light;
+  background: #fff;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
@@ -107,6 +112,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: #fff;
 }
 
 /* Navbar Styles */
