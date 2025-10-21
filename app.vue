@@ -83,6 +83,8 @@
 </template>
 
 <script setup>
+console.log(import.meta.env.NUXT_PUBLIC_TEST)
+
 import { ref } from 'vue'
 
 const mobileMenuOpen = ref(false)
