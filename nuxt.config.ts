@@ -16,7 +16,7 @@ export default defineNuxtConfig({
     
     // Public keys (available on both client and server)
     public: {
-      test: '' // NUXT_PUBLIC_TEST env variable - automatically loaded from .env
+      test: process.env.NUXT_PUBLIC_TEST || 'default value' // Explicitly read from process.env for SSG
     }
   }
 })
