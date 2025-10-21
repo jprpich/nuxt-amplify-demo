@@ -9,5 +9,14 @@ export default defineNuxtConfig({
         { name: 'theme-color', content: '#ffffff' }
       ]
     }
+  },
+  runtimeConfig: {
+    // Private keys (only available server-side)
+    // apiSecret: '', // NUXT_API_SECRET env variable
+    
+    // Public keys (available on both client and server)
+    public: {
+      test: '' // NUXT_PUBLIC_TEST env variable - automatically loaded from .env
+    }
   }
 })
